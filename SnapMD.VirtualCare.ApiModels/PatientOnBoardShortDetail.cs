@@ -14,6 +14,9 @@ using System.Collections.Generic;
 
 namespace SnapMD.VirtualCare.ApiModels
 {
+    /// <summary>
+    /// PatientOnBoardShortDetail
+    /// </summary>
     public class PatientOnBoardShortDetail
     {
         /// <summary>
@@ -24,16 +27,35 @@ namespace SnapMD.VirtualCare.ApiModels
         /// </value>
         public int PatientId { get; set; }
 
+        /// <summary>
+        /// FirstName
+        /// </summary>
         public string FirstName { get; set; }
+
+        /// <summary>
+        /// LastName
+        /// </summary>
         public string LastName { get; set; }
+
+        /// <summary>
+        /// Email
+        /// </summary>
         public string Email { get; set; }
 
+        /// <summary>
+        /// Dob
+        /// </summary>
         public DateTime? Dob { get; set; }
 
         /// <summary>
         /// Full address in free-form.
         /// </summary>
         public string Address { get; set; }
+
+        /// <summary>
+        /// Structurized address
+        /// </summary>
+        public AddressObject AddressObject { get; set; }
 
         /// <summary>
         /// GET 'api/countrycode'
@@ -44,15 +66,28 @@ namespace SnapMD.VirtualCare.ApiModels
         /// GET 'api/timezone'
         /// </summary>
         public int? TimeZoneId { get; set; }
+
+        /// <summary>
+        /// Mobile number with country code
+        /// </summary>
         public string MobileNumberWithCountryCode { get; set; }
 
         /// <summary>
         /// M/F
         /// </summary>
         public string Gender { get; set; }
-        public PatientOnBoardStatus? Status { get; set; }
-        public bool? PreventSendingInvitation { get; set; }
 
+        /// <summary>
+        /// PatientOnBoardStatus
+        /// </summary>
+        public PatientOnBoardStatus? Status { get; set; }
+
+        /// <summary>
+        /// Validate model
+        /// </summary>
+        /// <param name="exceptionToThrow">exceptionToThrow</param>
+        /// <param name="allowNullEmail">allowNullEmail</param>
+        /// <returns></returns>
         public bool ValidateModel(Func<string, Exception> exceptionToThrow = null, bool allowNullEmail = false)
         {
             if (exceptionToThrow == null)
@@ -71,7 +106,7 @@ namespace SnapMD.VirtualCare.ApiModels
                 // error: email required.
                 throw exceptionToThrow("Email address required.");
             }
-            
+
             var genders = new List<string> { "M", "F" };
             if (string.IsNullOrEmpty(Gender) || !genders.Contains(Gender))
             {
@@ -84,7 +119,7 @@ namespace SnapMD.VirtualCare.ApiModels
                 // error: date of birth required.
                 throw exceptionToThrow("Date of birth required.");
             }
-            if (string.IsNullOrEmpty(Address))
+            if (string.IsNullOrEmpty(Address) && AddressObject.SafeIsEmpty())
             {
                 // error: address required.
                 throw exceptionToThrow("Address required.");
@@ -98,5 +133,16 @@ namespace SnapMD.VirtualCare.ApiModels
 
             return true;
         }
+    }
+
+    /// <summary>
+    /// PatientOnBoardShortDetailRequest
+    /// </summary>
+    public class PatientOnBoardShortDetailRequest : PatientOnBoardShortDetail
+    {
+        /// <summary>
+        /// Prevent sending invitation email
+        /// </summary>
+        public bool? PreventSendingInvitation { get; set; }
     }
 }

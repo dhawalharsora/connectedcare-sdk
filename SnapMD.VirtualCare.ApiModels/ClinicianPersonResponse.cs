@@ -22,6 +22,14 @@ namespace SnapMD.VirtualCare.ApiModels
         public int ProviderId { get; set; }
 
         /// <summary>
+        ///     Gets or sets the department.
+        /// </summary>
+        /// <value>
+        ///     The department.
+        /// </value>
+        public string Department { get; set; }
+
+        /// <summary>
         ///     Gets or sets the specialty.
         /// </summary>
         /// <value>
@@ -36,5 +44,25 @@ namespace SnapMD.VirtualCare.ApiModels
         ///     The user identifier.
         /// </value>
         public int UserId { get; set; }
+
+        /// <summary>
+        /// Person's email
+        /// </summary>
+        public string Email { get; set; }
+
+        /// <summary>
+        /// Person's status online|offline
+        /// </summary>
+        public string Presence { get; set; }
+        
+        /// <summary>
+        /// Shows if Provider have Coduct consultation permission.
+        /// </summary>
+        public bool CanHaveConsultation { get; set; }
+        
+        /// <summary>
+        /// Staff profile gender.
+        /// </summary>
+        public string Gender { get; set; }
     }
 }

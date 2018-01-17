@@ -11,6 +11,7 @@
 //    limitations under the License.
 #endregion
 
+using SnapMD.VirtualCare.ApiModels.Scheduling;
 using System;
 using System.Collections.Generic;
 
@@ -44,6 +45,7 @@ namespace SnapMD.VirtualCare.ApiModels
 
         public DateTime? DOB { get; set; }
         public DateTime? CreatedDate { get; set; }
+        public DateTime? UpdatedDate { get; set; }
 
         public string ConsultationDate
         {
@@ -71,6 +73,7 @@ namespace SnapMD.VirtualCare.ApiModels
                 return string.Empty;
             }
         }
+        public Double DisconnctedDuration { get; set; }
 
         public DateTime? WaitingConsultationInfo { get; set; }
         public DateTime? StartedConsultationInfo { get; set; }
@@ -111,6 +114,16 @@ namespace SnapMD.VirtualCare.ApiModels
         public int? Status { get; set; }
         public int? DoctorStatus { get; set; }
         public int? PatientStatus { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public string PhoneType { get; set; }
+
+        public bool Dismissed { get; set; }
+
+        public AppointmentTypeCode AppointmentType { get; set; }
+
+        public EncounterTypeCode EncounterTypeCode { get; set; }
     }
 
     public class Guardian

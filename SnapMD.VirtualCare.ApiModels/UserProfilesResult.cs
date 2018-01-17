@@ -224,27 +224,36 @@ namespace SnapMD.VirtualCare.ApiModels
         public int? Ethnicity { get; set; }
 
         /// <summary>
-        /// Gets a value indicating whether this instance has required fields.
+        /// Gets a value indicating whether this instance has default required fields (common for all hospitals).
         /// </summary>
         /// <value>
         /// <c>true</c> if this instance has required fields; otherwise, <c>false</c>.
         /// </value>
-        public bool HasRequiredFields
+        public bool HasDefaultRequiredFields
         {
+            //this property should be set in the api checking actual required fields and switches.
             //address isn't required for dependents
             // taking this out: !string.IsNullOrWhiteSpace(Address)
             get
             {
                 if (!string.IsNullOrWhiteSpace(FirstName) && !string.IsNullOrWhiteSpace(LastName) &&
                     Dob.HasValue && !string.IsNullOrWhiteSpace(Gender) &&
-                    !string.IsNullOrWhiteSpace(MobilePhone) && 
-                    !string.IsNullOrWhiteSpace(TimeZone))
+                    !string.IsNullOrWhiteSpace(MobilePhone) &&
+                    (TimeZoneId ?? 0) != 0)
                 {
                     return true;
                 }
                 return false;
             }
         }
+        
+        /// <summary>
+        /// Gets or sets a value indicating whether this instance has required fields.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if this instance has required fields; otherwise, <c>false</c>.
+        /// </value>
+        public bool HasRequiredFields { get; set; }
 
         /// <summary>
         /// The person identifier of the user.
@@ -265,5 +274,10 @@ namespace SnapMD.VirtualCare.ApiModels
         /// Guardian user id (for dependent patients).
         /// </summary>
         public int? GuardianUserId { get; set; }
+
+        /// <summary>
+        /// User role description.
+        /// </summary>
+        public string UserRoleDescription { get; set; }
     }
 }

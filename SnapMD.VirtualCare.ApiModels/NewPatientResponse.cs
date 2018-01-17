@@ -17,6 +17,8 @@ namespace SnapMD.VirtualCare.ApiModels
     {
         public string Address { get; set; }
 
+        public AddressObject AddressObject { get; set; }
+
         public DateTime? Dob { get; set; }
         
         public int TimeZoneId { get; set; }
@@ -30,5 +32,9 @@ namespace SnapMD.VirtualCare.ApiModels
         public int ProviderId { get; set; }
 
         public int UserLoginId { get; set; }
+
+        public string Gender { get; set; }
+
+        public string MobilePhone { get; set; }
     }
 }

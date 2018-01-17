@@ -3,9 +3,9 @@
 namespace SnapMD.VirtualCare.ApiModels.Rules
 {
     /// <summary>
-    /// Request model for PatientVisibility (is patient able to see particular provider)
+    /// Request model for provider-patient visibility rules
     /// </summary>
-    public class ProviderPatientVisibilityRequest : IRuleExecutionRequest
+    public class CompoundVisibilityRequest : IRuleExecutionRequest
     {
         /// <summary>
         /// The category of the rule for the request.
@@ -13,7 +13,7 @@ namespace SnapMD.VirtualCare.ApiModels.Rules
         /// <value>
         /// The category.
         /// </value>
-        public RuleCategoryCode Category => RuleCategoryCode.PatientVisibility;
+        public RuleCategoryCode Category => RuleCategoryCode.VisibilityRuleSet;
 
         /// <summary>
         /// The hospital identifier for filtering the rules.
@@ -32,15 +32,39 @@ namespace SnapMD.VirtualCare.ApiModels.Rules
         public List<ProviderLicenseRegion> ProviderLicenseRegions { get; set; }
 
         /// <summary>
-        /// Address from patient response
+        /// Parsed patient address from patient's profile
         /// </summary>
         /// <value>
         /// Country/state/city/postal code.
         /// </value>
-        public SubjectAddress PatientResponseAddress { get; set; }
+        public SubjectAddress PatientAddress { get; set; }
 
         /// <summary>
-        /// A value indicating whether this <see cref="ProviderPatientVisibilityRequest"/> is debug.
+        /// Unarsed patient address from patient's profile
+        /// </summary>
+        /// <value>
+        /// Free-form address text.
+        /// </value>
+        public string PatientAddressText { get; set; }
+
+        /// <summary>
+        /// Parsed  encounter address from patient's response
+        /// </summary>
+        /// <value>
+        /// Country/state/city/postal code.
+        /// </value>
+        public SubjectAddress EncounterAddress { get; set; }
+
+        /// <summary>
+        /// Unarsed encounter address from patient's response
+        /// </summary>
+        /// <value>
+        /// Free-form address text.
+        /// </value>
+        public string EncounterAddressText { get; set; }
+
+        /// <summary>
+        /// A value indicating whether this is debug.
         /// (inhetrited from <see cref="IRuleExecutionRequest"/>).
         /// Additional information maybe included in the response on debug.
         /// </summary>
