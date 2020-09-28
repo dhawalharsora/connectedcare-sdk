@@ -98,9 +98,8 @@ namespace SnapMD.VirtualCare.ApiModels
         /// Validates NewPatientRequest
         /// </summary>
         /// <param name="exceptionToThrow">exceptionToThrow</param>
-        /// <param name="skipEmailValidation">Skips email validation</param>
         /// <returns></returns>
-        public bool ValidateModel(Func<string, Exception> exceptionToThrow = null, bool skipEmailValidation = false)
+        public bool ValidateModel(Func<string, Exception> exceptionToThrow = null)
         {
             if (exceptionToThrow == null)
             {
@@ -118,12 +117,6 @@ namespace SnapMD.VirtualCare.ApiModels
                 {
                     // error: first name required.
                     throw exceptionToThrow("First name required.");
-                }
-
-                if (!skipEmailValidation && string.IsNullOrEmpty(Email))
-                {
-                    // error: email required.	
-                    throw exceptionToThrow("Email address required.");
                 }
 
                 if (string.IsNullOrWhiteSpace(Address) && AddressObject.SafeIsEmpty())
