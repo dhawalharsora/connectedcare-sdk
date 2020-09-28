@@ -119,6 +119,12 @@ namespace SnapMD.VirtualCare.ApiModels
                     throw exceptionToThrow("First name required.");
                 }
 
+                if (string.IsNullOrEmpty(Email))
+                {
+                    // error: email required.
+                    throw exceptionToThrow("Email address required.");
+                }
+
                 if (string.IsNullOrWhiteSpace(Address) && AddressObject.SafeIsEmpty())
                 {
                     // error: address required.
